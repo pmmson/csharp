@@ -14,13 +14,47 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Task1;
 
 namespace Task4
 {
     class Program
     {
+        static bool CheckLoginPass(string login, string password)
+        {
+            return (login == "root" && password == "GeekBrains");
+        }
         static void Main(string[] args)
         {
+
+
+            Console.WriteLine("Пожалуйста, введите учетные данные: ");
+            int i = 1; //кол-во попыток
+            string login;
+            string password;
+            do
+            {
+                Console.Write("Введите логин: ");
+                login = Console.ReadLine();
+                Console.Write("пароль: ");
+                password = Console.ReadLine();
+                if (CheckLoginPass(login, password))
+                {
+                    Console.WriteLine("Успешная авторизация!");
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Неверный логин или пароль!");
+                    i++;
+                }
+            } while (i <= 3);
+            if (i > 3)
+            {
+                Console.WriteLine("Превышено кол-во попыток авторизации!");
+            }
+
+            MyLib.Pause();
         }
     }
 }

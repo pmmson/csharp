@@ -17,36 +17,52 @@ namespace Task5
 {
     class Program
     {
+        static double BMI(double height, double weight)
+        {
+            height = height / 100;
+            return weight / (height * height);
+        }
+        
+        static double CheckWeight(double height, double weight)
+        {
+            double bmi = BMI(height, weight);
+            height = height / 100;
+            double bmiMin = 18.5;
+            double bmiMax = 24.99;
+
+            if (bmi <= bmiMin)
+            {
+                return weight - bmiMin * height * height;
+            }
+            else if (bmi >= bmiMax)
+            {
+                return weight - bmiMax * height * height;
+            }
+            else
+            {
+                return 0;
+            }
+        }
         static void Main(string[] args)
         {
             Console.WriteLine("Рассчитаем ваш индекс массы тела!");
+
             Console.Write("Введите рост(см): ");
             double height = Convert.ToInt32(Console.ReadLine());
             Console.Write("Введите вес(кг): ");
             double weight = Convert.ToInt32(Console.ReadLine());
-            height = height / 100;
-            double bmi = weight / (height * height);
-            Console.WriteLine($"Индекс массы тела (BMI): {bmi:F2}");
-            double bmiMin = 18.5;
-            double bmiMax = 24.99;
-            double deltaWeight;
 
-            if (bmi <= bmiMin)
-            {
-                deltaWeight = bmiMin * height * height - weight;
-                Console.WriteLine($"У вас дефицит массы тела. Вам нужно набрать вес на {deltaWeight:F2} кг!");
-            }
-            else if (bmi >= bmiMax)
-            {
-                deltaWeight = weight - bmiMax * height * height;
-                Console.WriteLine($"Избыточная масса тела. Вам нужно похудеть на {deltaWeight:F2} кг!");
-            }
-            else
-            {
-                Console.WriteLine($"Ваш вес {weight:F2} кг в норме!");
-            }
-            
-            
+            Console.WriteLine($"Индекс массы тела (BMI): {BMI(height, weight):F2}");
+
+            double check = CheckWeight(height, weight);
+            Console.WriteLine($"Вам нужно поправиться на {deltaWeight:F2} кг!");
+
+            Console.WriteLine($"Вам нужно похудеть на {deltaWeight:F2} кг!");
+
+            Console.WriteLine($"Ваш вес в норме!");
+
+
+
 
             MyLib.Pause();
         }
