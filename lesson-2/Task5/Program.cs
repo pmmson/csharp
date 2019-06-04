@@ -19,28 +19,28 @@ namespace Task5
     {
         static double BMI(double height, double weight)
         {
-            height = height / 100;
             return weight / (height * height);
         }
-        
-        static double CheckWeight(double height, double weight)
+
+        static void CheckWeight(double height, double weight)
         {
             double bmi = BMI(height, weight);
-            height = height / 100;
+            Console.WriteLine($"Индекс массы тела (BMI): {bmi:F2}");
+
             double bmiMin = 18.5;
             double bmiMax = 24.99;
 
             if (bmi <= bmiMin)
             {
-                return weight - bmiMin * height * height;
+                Console.WriteLine($"Вам нужно поправиться на {bmiMin * height * height - weight:F2} кг!");
             }
             else if (bmi >= bmiMax)
             {
-                return weight - bmiMax * height * height;
+                Console.WriteLine($"Вам нужно похудеть на {weight - bmiMax * height * height:F2} кг!");
             }
             else
             {
-                return 0;
+                Console.WriteLine($"Ваш вес в норме!");
             }
         }
         static void Main(string[] args)
@@ -48,20 +48,11 @@ namespace Task5
             Console.WriteLine("Рассчитаем ваш индекс массы тела!");
 
             Console.Write("Введите рост(см): ");
-            double height = Convert.ToInt32(Console.ReadLine());
+            double height = Convert.ToDouble(Console.ReadLine()) / 100;
             Console.Write("Введите вес(кг): ");
-            double weight = Convert.ToInt32(Console.ReadLine());
+            double weight = Convert.ToDouble(Console.ReadLine());
 
-            Console.WriteLine($"Индекс массы тела (BMI): {BMI(height, weight):F2}");
-
-            double check = CheckWeight(height, weight);
-            Console.WriteLine($"Вам нужно поправиться на {deltaWeight:F2} кг!");
-
-            Console.WriteLine($"Вам нужно похудеть на {deltaWeight:F2} кг!");
-
-            Console.WriteLine($"Ваш вес в норме!");
-
-
+            CheckWeight(height, weight);
 
 
             MyLib.Pause();
