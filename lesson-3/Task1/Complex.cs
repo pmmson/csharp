@@ -91,7 +91,7 @@ namespace Task1
         // Специальный метод, который возвращает строковое представление данных.
         public string PrintComplexClass()
         {
-            return (im < 0) ? re + "-" + Math.Abs(im) + "i" : re + "+" + im + "i";
+            return (im < 0) ? re + "" + im + "i" : re + "+" + im + "i";
         }
     }
 }

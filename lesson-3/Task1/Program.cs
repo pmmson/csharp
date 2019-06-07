@@ -40,7 +40,7 @@ namespace Task1
         }
         public string Print()
         {
-            return (im < 0) ? re + "-" + Math.Abs(im) + "i" : re + "+" + im + "i";
+            return (im < 0) ? re + "" + im + "i" : re + "+" + im + "i";
         }
     }
     class Program
