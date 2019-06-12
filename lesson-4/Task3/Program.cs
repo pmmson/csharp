@@ -42,6 +42,13 @@ namespace ArrayClass
                 a[i] = a[i - 1] + step;
             }
         }
+
+        //public int this[int i]
+        //{
+        //    get { return a[i]; }
+        //    set { a[i] = value; }
+        //}
+
         public int Sum
         {
             get
@@ -74,6 +81,16 @@ namespace ArrayClass
                 return min;
             }
         }
+        public int MaxCount
+        {
+            get
+            {
+                int count = 0;
+                for (int i = 1; i < a.Length; i++)
+                    if (a[i - 1] >= a[i]) count++;
+                return count;
+            }
+        }
         public int CountPositiv
         {
             get
@@ -92,26 +109,46 @@ namespace ArrayClass
             return s;
         }
 
-        public void Inverse()
+        public int[] Inverse()
+        {
+            int[] x = new int[a.Length];
+            a.CopyTo(x, 0);
+            for (int i = 0; i < x.Length; i++)
+                x[i] = x[i] * -1;
+            return x;
+        }
+        public int[] Multi(int n)
         {
             for (int i = 0; i < a.Length; i++)
-            {
-                a[i] = -a[i];
-            }
+                a[i] = a[i] * n;
+            return a;
         }
     }
     class Program
     {
         static void Main(string[] args)
         {
-            MyArray a = new MyArray(10, 0, 10);
-            MyArray b = new MyArray(5);
-            Console.WriteLine(b.ToString());
-            Console.WriteLine(a.ToString());
-            Console.WriteLine(a.Max);
-            Console.WriteLine(a.Min);
-            Console.WriteLine(a.CountPositiv);
-            Console.WriteLine(a.Sum);
+            MyArray a = new MyArray(10, -5, 5);
+            MyArray b = new MyArray(7, 3);
+            MyArray c = new MyArray(9);
+            Console.WriteLine($"Массив заполненный одним элементом: {b.ToString()}");
+            Console.WriteLine($"Массив с заданным шаговым значением: {c.ToString()}");
+            Console.WriteLine($"\nМассив: {a.ToString()}");
+            Console.WriteLine($"Максимальное число массива: {a.Max}");
+            Console.WriteLine($"Минимальное число массива: {a.Min}");
+            Console.WriteLine($"Кол-во положительных чисел в массиве: {a.CountPositiv}");
+            Console.WriteLine($"Сумма чисел в массиве: {a.Sum}");
+
+            int[] z = a.Inverse();
+            Console.WriteLine($"\nИнверсия массива:\n{a.ToString()}");
+            for (int i = 0; i < z.Length; i++)
+            {
+                Console.Write($"{z[i]} ");
+            }
+
+            a.Multi(4);
+            Console.WriteLine($"\nМассив каждый элемент умноженный на 4:\n{a.ToString()}");
+            Console.WriteLine($"Количество максимальных элементов в массиве: {a.MaxCount}");
 
             Console.ReadKey();
         }
