@@ -1,5 +1,4 @@
-﻿4
-root;GeekBrains
+﻿root;GeekBrains
 admin;admin
 user;user
 operator;operator

@@ -22,14 +22,13 @@ namespace Task4
         static bool CheckLoginPass(Account user)
         {
             StreamReader sr = new StreamReader(@"accounts.txt");
-            int count = int.Parse(sr.ReadLine()); // узнаем кол-во пользователей
-            string[][] account = new string[count][];
+            string[] account;
             int i = 0;
             bool flag = false;
             while (!sr.EndOfStream)
             {
-                account[i] = sr.ReadLine().Split(';');
-                if (account[i][0] == user.Login && account[i][1] == user.Password)
+                account = sr.ReadLine().Split(';');
+                if (account[0] == user.Login && account[1] == user.Password)
                 {
                     flag = true;
                     break;
@@ -38,6 +37,7 @@ namespace Task4
                     i++;
                 }
             }
+            sr.Close();
 
             return flag;
         }
