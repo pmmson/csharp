@@ -34,7 +34,7 @@ namespace Task2
         /// Выводит слова сообщения, которые содержат не более n букв
         /// </summary>
         /// <param name="n"></param>
-        public void Nwords(int n)
+        public void PrintWords(int n)
         {
             int count;
             for (int i = 0; i < text.Length; i++)
@@ -46,8 +46,40 @@ namespace Task2
                 }
             }
         }
+        /// <summary>
+        /// Удаляет из сообщения все слова, которые заканчиваются на заданный символ
+        /// </summary>
+        /// <param name="c"></param>
+        public void DeleteWords(char c)
+        {
+            for (int i = 0; i < text.Length; i++)
+            {
+                for (int j = 0; j < text[i].Length; j++)
+                {
+                    char[] letters = text[i][j].ToCharArray();
+                    if(letters[letters.Length-1] == c)
+                    {
+                        text[i][j] = "";
+                    }
+                }
+            }
+        }
 
+        public override string ToString()
+        {
+            string str = "";
+            for (int i = 0; i < text.Length; i++)
+            {
+                for (int j = 0; j < text[i].Length; j++)
+                {
+                    if (text[i][j] == "") continue;
+                    str += text[i][j] + " ";
+                }
+                str += "\n";
+            }
 
+            return str;
+        }
 
     }
     class Program
@@ -55,8 +87,11 @@ namespace Task2
         static void Main(string[] args)
         {
             Message msg = new Message("message.txt");
-            msg.Nwords(7);
-            //Console.WriteLine(msg);
+            msg.PrintWords(7);
+            Console.WriteLine(msg.ToString());
+            msg.DeleteWords('я');
+            Console.WriteLine(msg.ToString());
+
 
             Console.ReadKey();
         }
