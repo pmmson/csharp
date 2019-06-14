@@ -64,6 +64,34 @@ namespace Task2
                 }
             }
         }
+        /// <summary>
+        /// Находит самое длинное слово сообщения.
+        /// Если в сообщении несколько самых длинных слов - выводит все через пробел
+        /// </summary>
+        /// <returns></returns>
+        public string MaxWord()
+        {
+            int count;
+            int max = 0;
+            string maxWord = "";
+            for (int i = 0; i < text.Length; i++)
+            {
+                for (int j = 0; j < text[i].Length; j++)
+                {
+                    count = text[i][j].Length;
+                    if (count > max)
+                    {
+                        max = count;
+                        maxWord = text[i][j];
+                    } else if (count == max)
+                    {
+                        maxWord += " " + text[i][j];
+                    }
+                }
+            }
+
+            return maxWord;
+        }
 
         public override string ToString()
         {
@@ -89,8 +117,10 @@ namespace Task2
             Message msg = new Message("message.txt");
             msg.PrintWords(7);
             Console.WriteLine(msg.ToString());
+            Console.WriteLine(msg.MaxWord());
             msg.DeleteWords('я');
             Console.WriteLine(msg.ToString());
+            Console.WriteLine(msg.MaxWord());
 
 
             Console.ReadKey();
