@@ -31,21 +31,17 @@ namespace Task4
 
             for (int i = 0; i < rates.Length; i++)
             {
-                double avB1 = (int.Parse(rates[i][2]) + int.Parse(rates[i][3]) + int.Parse(rates[i][4])) / 3.0; // рассчитали средний балл текущего ученика
                 string[] tmp = new string[rates[i].Length];
-                for (int k = i; k < rates.Length; k++)
+                for (int k = i + 1; k < rates.Length; k++)
                 {
+                    double avB1 = (int.Parse(rates[i][2]) + int.Parse(rates[i][3]) + int.Parse(rates[i][4])) / 3.0; // рассчитали средний балл текущего ученика
                     double avB2 = (int.Parse(rates[k][2]) + int.Parse(rates[k][3]) + int.Parse(rates[k][4])) / 3.0; // рассчитываем балл каждого следующего
-                    if (avB1 < avB2)
+                    if (avB1 > avB2)
                     {
                         rates[k].CopyTo(tmp, 0);
                         rates[i].CopyTo(rates[k], 0);
                         tmp.CopyTo(rates[i], 0);
-                        i = -1;
-                        break;
                     }
-                    else if (avB1 == avB2) continue;
-                    else break;
                 }
             }
 
@@ -58,7 +54,11 @@ namespace Task4
                 Console.WriteLine();
             }
 
-
+            for (int i = 0; i < 3; i++)
+            {
+                Console.Write($"{rates[i][0]} {rates[i][1]}\n");
+               
+            }
 
             Console.ReadKey();
         }
