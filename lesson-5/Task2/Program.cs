@@ -13,7 +13,9 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Text;
 
 namespace Task2
 {
@@ -56,10 +58,27 @@ namespace Task2
             {
                 for (int j = 0; j < text[i].Length; j++)
                 {
-                    char[] letters = text[i][j].ToCharArray();
-                    if(letters[letters.Length-1] == c)
+                    if (text[i][j] != "")
                     {
-                        text[i][j] = "";
+                        char[] letters = text[i][j].ToCharArray();
+                        int l = letters.Length;
+                        if (letters[l - 1] == ',')
+                        {
+                            l -= 1;
+                            if (letters[l - 1] == c)
+                            {
+                                text[i][j] = ""; text[i][j - 1] = text[i][j - 1] + ",";
+                            }
+                        }
+                        else if (letters[l - 1] == '.')
+                        {
+                            l -= 1;
+                            if (letters[l - 1] == c)
+                            {
+                                text[i][j] = ""; text[i][j - 1] = text[i][j - 1] + ".";
+                            }
+                        }
+                        if (letters[l - 1] == c) text[i][j] = "";
                     }
                 }
             }
@@ -92,7 +111,38 @@ namespace Task2
 
             return maxWord;
         }
+        public string[][] ToArray()
+        {
+            return text;
+        }
+        /// <summary>
+        /// Частотный анализ текста по массиву слов
+        /// </summary>
+        /// <param name="words"></param>
+        /// <param name="txt"></param>
+        /// <returns></returns>
+        public static Dictionary<string, int> WordFrequency(string[] words, Message txt)
+        {
+            Dictionary<string, int> result = new Dictionary<string, int>();
+            string[][] a = txt.ToArray();
 
+            for (int i = 0; i < a.Length; i++)
+            {
+                for (int j = 0; j < a[i].Length; j++)
+                {
+                    for (int k = 0; k < words.Length; k++)
+                    {
+                        if (words[k] == a[i][j])
+                        {
+                            if (result.ContainsKey(words[k])) result[words[k]]++;
+                            else result.Add(words[k], 1);
+                        }
+                    }
+                }
+            }
+
+            return result;
+        }
         public override string ToString()
         {
             string str = "";
@@ -115,13 +165,32 @@ namespace Task2
         static void Main(string[] args)
         {
             Message msg = new Message("message.txt");
+            
+            // а) Вывести только те слова сообщения, которые содержат не более n букв.
             msg.PrintWords(7);
-            Console.WriteLine(msg.ToString());
-            Console.WriteLine(msg.MaxWord());
+            
+            // б) Удалить из сообщения все слова, которые заканчиваются на заданный символ.
+            Console.WriteLine("\nТекст до удаления слова с последним символом 'я'\n" + msg.ToString());
             msg.DeleteWords('я');
-            Console.WriteLine(msg.ToString());
-            Console.WriteLine(msg.MaxWord());
+            Console.WriteLine("\nТекст после удаления слова с последним символом 'я'\n" + msg.ToString());
+            
+            // в) Найти самое длинное слово сообщения.
+            Console.WriteLine($"Самое длинное слово сообщения: {msg.MaxWord()}");
+            
+            // г) Сформировать строку с помощью StringBuilder из самых длинных слов сообщения.
+            msg.DeleteWords('r');
+            StringBuilder strb = new StringBuilder();
+            strb.Append(msg.MaxWord());
+            Console.WriteLine($"Cамые длинные слова сообщения (после удаления слов заканчивающихся на 'r','я'): {strb}");
 
+            // д) ***Создать метод, который производит частотный анализ текста.
+            Console.WriteLine("\nЧастотный анализ текста:\n");
+            string[] myWords = { "массив", "класс", "текст", "метод", "сообщения", "слова" };
+            Dictionary<string, int> result = Message.WordFrequency(myWords, msg);
+            foreach (string val in result.Keys)
+            {
+                Console.WriteLine($"{val}: {result[val]}");
+            }
 
             Console.ReadKey();
         }
