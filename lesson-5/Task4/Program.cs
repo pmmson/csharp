@@ -17,47 +17,46 @@ using System.IO;
 
 namespace Task4
 {
+    struct Results
+    {
+        public string FI;
+        public double avB;
+
+    }
     class Program
     {
         static void Main(string[] args)
         {
             string[] file = File.ReadAllLines("ratings.txt");
-            string[][] rates = new string[int.Parse(file[0])][];
+            int n = int.Parse(file[0]); // кол-во учеников
+            Results[] rates = new Results[n]; // cструктура учеников
+            double[] minB = new double[n]; // вспомогательный массив минимальных баллов
 
             for (int i = 0; i < rates.Length; i++)
             {
-                rates[i] = file[i + 1].Split(' ');
+                var s = file[i + 1].Split(' ');
+                rates[i].FI = s[0] + " " + s[1];
+                rates[i].avB = (double.Parse(s[2]) + double.Parse(s[3]) + double.Parse(s[4])) / 3;
+                minB[i] = rates[i].avB;
             }
 
-            for (int i = 0; i < rates.Length; i++)
+            Array.Sort(minB); // сортируем массив минимальных баллов
+
+            int k = 0; // счетчик вывода на экран худших по среднему баллу учеников
+            for (int i = 0; i < minB.Length; i++)
             {
-                string[] tmp = new string[rates[i].Length];
-                for (int k = i + 1; k < rates.Length; k++)
+                if (i == 0 || minB[i] != minB[i - 1])
                 {
-                    double avB1 = (int.Parse(rates[i][2]) + int.Parse(rates[i][3]) + int.Parse(rates[i][4])) / 3.0; // рассчитали средний балл текущего ученика
-                    double avB2 = (int.Parse(rates[k][2]) + int.Parse(rates[k][3]) + int.Parse(rates[k][4])) / 3.0; // рассчитываем балл каждого следующего
-                    if (avB1 > avB2)
+                    for (int j = 0; j < rates.Length; j++)
                     {
-                        rates[k].CopyTo(tmp, 0);
-                        rates[i].CopyTo(rates[k], 0);
-                        tmp.CopyTo(rates[i], 0);
+                        if (rates[j].avB == minB[i])
+                        {
+                            Console.WriteLine($"{rates[j].FI}");
+                        }
                     }
+                    k++; // вывели всех с очерердным худшим баллом и увеличили счетчик вывода на +1
+                    if (k >= 3) break; // вышли если перечислили всех учеников с худшим баллом
                 }
-            }
-
-            for (int i = 0; i < rates.Length; i++)
-            {
-                for (int j = 0; j < rates[i].Length; j++)
-                {
-                    Console.Write(rates[i][j] + " ");
-                }
-                Console.WriteLine();
-            }
-
-            for (int i = 0; i < 3; i++)
-            {
-                Console.Write($"{rates[i][0]} {rates[i][1]}\n");
-               
             }
 
             Console.ReadKey();
