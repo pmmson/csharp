@@ -11,7 +11,6 @@
 
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.IO;
 
 class Program
@@ -22,10 +21,10 @@ class Program
         int magistr = 0;
         int c5 = 0;
         int c6 = 0;
-        // int[] a = new int[100]; // предполагаем что больше 100 лет студентов нет
+
         // Создадим необобщенный список
         ArrayList list = new ArrayList();
-        ArrayList ages = new ArrayList();
+        int[] courses = new int[6];
         // Запомним время в начале обработки данных
         DateTime dt = DateTime.Now;
         StreamReader sr = new StreamReader("students.csv");
@@ -36,7 +35,6 @@ class Program
                 string[] s = sr.ReadLine().Split(';');
                 // Console.WriteLine("{0}", s[0], s[1], s[2], s[3], s[4]);
                 list.Add(s[1] + " " + s[0]); // Добавляем склееные имя и фамилию
-                // ages.Add(int.Parse(s[5])); // считываем возраст студентов
                 if (int.Parse(s[6]) < 5)
                 {
                     bakalavr++;
@@ -47,10 +45,10 @@ class Program
                     if (int.Parse(s[6]) == 5) c5++;
                     else if (int.Parse(s[6]) == 6) c6++;
                 }
-                //foreach(int val in ages)
-                //{
-                //    a[val]++;
-                //}
+                if (int.Parse(s[5]) >= 18 && int.Parse(s[5]) <= 20)
+                {
+                    courses[int.Parse(s[6]) - 1]++;
+                }
             }
             catch
             {
@@ -64,7 +62,7 @@ class Program
         Console.WriteLine("Бакалавров:{0}", bakalavr);
         foreach (var v in list) Console.WriteLine(v);
         Console.WriteLine("Студентов на 5 курсе: {0}, на 6: {1}", c5, c6);
-        //foreach (var v in a) if (v != 0) Console.WriteLine(v);
+        for (int i = 0; i < courses.Length; i++) Console.Write($"Кол-во студентов в возрасте от 18 до 20 на {i + 1} курсе: {courses[i]}\n");
         // Вычислим время обработки данных
         Console.WriteLine(DateTime.Now - dt);
 
