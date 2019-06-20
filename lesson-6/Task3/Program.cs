@@ -106,15 +106,21 @@ class Program
         foreach (var v in students) Console.WriteLine($"{v.Course}\t{v.Age}\t{v.FIO}");
 
         // г) *отсортировать список по курсу и возрасту студента;
-
+        Console.WriteLine("\nСортируем список студентов по курсу, затем по возрасту");
+        students.Sort(new Comparison<Student>(SortByCourseAndAge));
+        foreach (var v in students) Console.WriteLine($"{v.Course}\t{v.Age}\t{v.FIO}");
         // Вычислим время обработки данных
         Console.WriteLine(DateTime.Now - dt);
 
-        Console.ReadKey();
+        _ = Console.ReadKey();
     }
 
-    static int SortByAge(Student s1, Student s2)
+    static int SortByAge(Student s1, Student s2) => s1.Age.CompareTo(s2.Age); // по совету студии
+
+    static int SortByCourseAndAge(Student s1, Student s2)
     {
-        return s1.Age.CompareTo(s2.Age);
+        int result = s1.Course.CompareTo(s2.Course);
+        if (result == 0) result = s1.Age.CompareTo(s2.Age);
+        return result;
     }
 }
