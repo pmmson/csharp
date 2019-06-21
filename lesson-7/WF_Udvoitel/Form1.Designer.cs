@@ -37,56 +37,64 @@
             this.менюToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.playToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblInfo = new System.Windows.Forms.Label();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.lblR = new System.Windows.Forms.Label();
+            this.lblName2 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnCommand2
             // 
-            this.btnCommand2.Location = new System.Drawing.Point(607, 168);
+            this.btnCommand2.Location = new System.Drawing.Point(633, 156);
             this.btnCommand2.Name = "btnCommand2";
-            this.btnCommand2.Size = new System.Drawing.Size(129, 58);
+            this.btnCommand2.Size = new System.Drawing.Size(129, 68);
             this.btnCommand2.TabIndex = 1;
             this.btnCommand2.Text = "х2";
             this.btnCommand2.UseVisualStyleBackColor = true;
+            this.btnCommand2.Visible = false;
             this.btnCommand2.Click += new System.EventHandler(this.BtnCommand2_Click);
             // 
             // btnReset
             // 
-            this.btnReset.Location = new System.Drawing.Point(607, 274);
+            this.btnReset.Location = new System.Drawing.Point(633, 344);
             this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(129, 58);
+            this.btnReset.Size = new System.Drawing.Size(129, 68);
             this.btnReset.TabIndex = 2;
-            this.btnReset.Text = "Сброс";
+            this.btnReset.Text = "сброс";
             this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Visible = false;
             this.btnReset.Click += new System.EventHandler(this.BtnReset_Click);
             // 
             // lblNumber
             // 
             this.lblNumber.AutoSize = true;
-            this.lblNumber.Location = new System.Drawing.Point(149, 106);
+            this.lblNumber.Location = new System.Drawing.Point(156, 126);
             this.lblNumber.Name = "lblNumber";
             this.lblNumber.Size = new System.Drawing.Size(24, 25);
             this.lblNumber.TabIndex = 3;
             this.lblNumber.Text = "0";
+            this.lblNumber.Visible = false;
             // 
             // btnCommand1
             // 
-            this.btnCommand1.Location = new System.Drawing.Point(607, 62);
+            this.btnCommand1.Location = new System.Drawing.Point(633, 62);
             this.btnCommand1.Name = "btnCommand1";
             this.btnCommand1.Size = new System.Drawing.Size(129, 69);
             this.btnCommand1.TabIndex = 4;
             this.btnCommand1.Text = "+1";
             this.btnCommand1.UseVisualStyleBackColor = true;
+            this.btnCommand1.Visible = false;
             this.btnCommand1.Click += new System.EventHandler(this.BtnCommand1_Click);
             // 
             // clickCounter
             // 
             this.clickCounter.AutoSize = true;
-            this.clickCounter.Location = new System.Drawing.Point(276, 313);
+            this.clickCounter.Location = new System.Drawing.Point(276, 189);
             this.clickCounter.Name = "clickCounter";
             this.clickCounter.Size = new System.Drawing.Size(24, 25);
             this.clickCounter.TabIndex = 5;
             this.clickCounter.Text = "0";
+            this.clickCounter.Visible = false;
             // 
             // menuStrip1
             // 
@@ -110,24 +118,59 @@
             // playToolStripMenuItem
             // 
             this.playToolStripMenuItem.Name = "playToolStripMenuItem";
-            this.playToolStripMenuItem.Size = new System.Drawing.Size(324, 38);
+            this.playToolStripMenuItem.Size = new System.Drawing.Size(189, 38);
             this.playToolStripMenuItem.Text = "Играть";
             this.playToolStripMenuItem.Click += new System.EventHandler(this.PlayToolStripMenuItem_Click);
             // 
             // lblInfo
             // 
             this.lblInfo.AutoSize = true;
-            this.lblInfo.Location = new System.Drawing.Point(13, 313);
+            this.lblInfo.Location = new System.Drawing.Point(13, 189);
             this.lblInfo.Name = "lblInfo";
             this.lblInfo.Size = new System.Drawing.Size(257, 25);
             this.lblInfo.TabIndex = 8;
             this.lblInfo.Text = "Ваше количество ходов:";
+            this.lblInfo.Visible = false;
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(633, 244);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(129, 76);
+            this.btnCancel.TabIndex = 9;
+            this.btnCancel.Text = "отмена";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Visible = false;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // lblR
+            // 
+            this.lblR.AutoSize = true;
+            this.lblR.Location = new System.Drawing.Point(13, 62);
+            this.lblR.Name = "lblR";
+            this.lblR.Size = new System.Drawing.Size(24, 25);
+            this.lblR.TabIndex = 11;
+            this.lblR.Text = "0";
+            this.lblR.Visible = false;
+            // 
+            // lblName2
+            // 
+            this.lblName2.AutoSize = true;
+            this.lblName2.Location = new System.Drawing.Point(13, 126);
+            this.lblName2.Name = "lblName2";
+            this.lblName2.Size = new System.Drawing.Size(137, 25);
+            this.lblName2.TabIndex = 12;
+            this.lblName2.Text = "Ваше число:";
+            this.lblName2.Visible = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lblName2);
+            this.Controls.Add(this.lblR);
+            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.lblInfo);
             this.Controls.Add(this.clickCounter);
             this.Controls.Add(this.btnCommand1);
@@ -155,6 +198,9 @@
         private System.Windows.Forms.ToolStripMenuItem менюToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem playToolStripMenuItem;
         private System.Windows.Forms.Label lblInfo;
+        private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Label lblR;
+        private System.Windows.Forms.Label lblName2;
     }
 }
 
