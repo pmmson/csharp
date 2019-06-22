@@ -18,13 +18,13 @@ namespace WF_UgadaiN
         }
         Random r = new Random();
         int n;
+        string userNumber;
 
-        private void BtnClick_Click(object sender, EventArgs e)
+        void MainUgadai()
         {
-            int userN;
             bool flag;
 
-            flag = int.TryParse(tBoxEnter.Text, out userN);
+            flag = int.TryParse(userNumber, out int userN);
             if (!flag)
             {
                 lblInfoOut.Text = "Вы не ввели число или введенное число некорректно";
@@ -48,9 +48,13 @@ namespace WF_UgadaiN
                     lblInfoOut.Left = this.ClientSize.Width / 2 - lblInfoOut.Width / 2;
                 }
             }
+        }
 
-
-
+        private void BtnClick_Click(object sender, EventArgs e)
+        {
+            userNumber = tBoxEnter.Text;
+            MainUgadai();
+            
             // MessageBox.Show($"{n} {userN}"); // для отладки
         }
 
@@ -59,6 +63,7 @@ namespace WF_UgadaiN
             lblInfoOut.Text = "";
             tBoxEnter.Text = "";
             n = r.Next(1, 100);
+            btnOneTime.Visible = false;
             lblInfo.Visible = true;
             tBoxEnter.Visible = true;
             btnClick.Visible = true;
@@ -68,6 +73,32 @@ namespace WF_UgadaiN
         private void TBoxEnter_MouseMove(object sender, MouseEventArgs e)
         {
             lblInfoOut.Text = "";
+        }
+
+        private void BtnNewGame2_Click(object sender, EventArgs e)
+        {
+            lblInfo.Text = "";
+            tBoxEnter.Visible = false;
+            btnClick.Visible = false;
+            btnOneTime.Visible = false;
+            lblInfoOut.Text = "";
+            n = r.Next(1, 100);
+            Form2 open = new Form2();
+            open.ShowDialog();
+            userNumber = open.tBoxF2String;
+            MainUgadai();
+            lblInfoOut.Visible = true;
+            btnOneTime.Visible = true;
+        }
+
+        private void BtnOneTime_Click(object sender, EventArgs e)
+        {
+            lblInfoOut.Text = "";
+            Form2 open = new Form2();
+            open.ShowDialog();
+            userNumber = open.tBoxF2String;
+            MainUgadai();
+            lblInfoOut.Visible = true;
         }
     }
 }
