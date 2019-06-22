@@ -47,15 +47,18 @@ namespace WF_Udvoitel
         private void BtnReset_Click(object sender, EventArgs e)
         {
             lblNumber.Text = "0";
-            steps.Clear();
+            steps.Clear(); // очищаем стек при сбросе
             clickCounter.Text = "0";
         }
 
         private void PlayToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int n = r.Next(100);
-            lblR.Text = $"Получите число {n} за минимальное кол-во ходов";
             MessageBox.Show($"Необходимо получить число {n} за минимальное число ходов!");
+            lblR.Text = $"Получите число {n} за минимальное кол-во ходов";
+            lblNumber.Text = "0";
+            steps.Clear();
+            clickCounter.Text = "0";
             lblName2.Visible = true;
             lblNumber.Visible = true;
             lblR.Visible = true;
