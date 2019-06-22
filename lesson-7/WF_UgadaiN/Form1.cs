@@ -44,6 +44,9 @@ namespace WF_UgadaiN
                 }
                 else
                 {
+                    tBoxEnter.Visible = false;
+                    btnOneTime.Visible = false;
+                    btnClick.Visible = false;
                     lblInfoOut.Text = "Поздравляю! Вы угадали!";
                     lblInfoOut.Left = this.ClientSize.Width / 2 - lblInfoOut.Width / 2;
                 }
