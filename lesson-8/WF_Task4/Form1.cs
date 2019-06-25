@@ -26,7 +26,7 @@ namespace WF_Task4
         private void New_ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SaveFileDialog sfd = new SaveFileDialog();
-            if(sfd.ShowDialog() == DialogResult.OK)
+            if (sfd.ShowDialog() == DialogResult.OK)
             {
                 db = new WorkOut(sfd.FileName);
                 db.Add("01.01.0001", 0.0, 0);
@@ -36,14 +36,21 @@ namespace WF_Task4
 
         private void Save_ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (db != null) db.Save();
+            if (db != null) {
+                SaveFileDialog sfd = new SaveFileDialog();
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    db = new WorkOut(sfd.FileName);
+                    db.Save();
+                }
+            }
             else MessageBox.Show("База данных не создана");
         }
 
         private void Open_ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
-            if(ofd.ShowDialog() == DialogResult.OK)
+            if (ofd.ShowDialog() == DialogResult.OK)
             {
                 db = new WorkOut(ofd.FileName);
                 db.Load();
@@ -55,11 +62,8 @@ namespace WF_Task4
         {
             Form2 f = new Form2();
             f.ShowDialog();
-        }
-
-        private void ListBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
             db = new WorkOut();
+            db.Add(f.tBoxDataStr, f.tBoxDistDouble, f.tBoxTimeInt);
             db.FillListView(this.listBox);
         }
     }

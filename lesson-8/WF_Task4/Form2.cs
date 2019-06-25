@@ -12,16 +12,26 @@ namespace WF_Task4
 {
     public partial class Form2 : Form
     {
-        WorkOut db;
         public Form2()
         {
             InitializeComponent();
         }
 
+        public string tBoxDataStr
+        {
+            get { return tBoxData.Text; }
+        }
+        public double tBoxDistDouble
+        {
+            get { return double.Parse(tBoxDist.Text); }
+        }
+        public int tBoxTimeInt
+        {
+            get { return int.Parse(tBoxTime.Text); }
+        }
+
         private void btn_OK_Click(object sender, EventArgs e)
         {
-            db = new WorkOut();
-            db.Add(tBoxData.Text.ToString(), double.Parse(tBoxDist.Text), int.Parse(tBoxTime.Text));
             Close();
         }
     }

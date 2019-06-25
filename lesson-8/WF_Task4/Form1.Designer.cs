@@ -74,28 +74,28 @@
             // New_ToolStripMenuItem
             // 
             this.New_ToolStripMenuItem.Name = "New_ToolStripMenuItem";
-            this.New_ToolStripMenuItem.Size = new System.Drawing.Size(324, 38);
+            this.New_ToolStripMenuItem.Size = new System.Drawing.Size(230, 38);
             this.New_ToolStripMenuItem.Text = "Новый";
             this.New_ToolStripMenuItem.Click += new System.EventHandler(this.New_ToolStripMenuItem_Click);
             // 
             // Open_ToolStripMenuItem
             // 
             this.Open_ToolStripMenuItem.Name = "Open_ToolStripMenuItem";
-            this.Open_ToolStripMenuItem.Size = new System.Drawing.Size(324, 38);
+            this.Open_ToolStripMenuItem.Size = new System.Drawing.Size(230, 38);
             this.Open_ToolStripMenuItem.Text = "Открыть";
             this.Open_ToolStripMenuItem.Click += new System.EventHandler(this.Open_ToolStripMenuItem_Click);
             // 
             // Save_ToolStripMenuItem
             // 
             this.Save_ToolStripMenuItem.Name = "Save_ToolStripMenuItem";
-            this.Save_ToolStripMenuItem.Size = new System.Drawing.Size(324, 38);
+            this.Save_ToolStripMenuItem.Size = new System.Drawing.Size(230, 38);
             this.Save_ToolStripMenuItem.Text = "Сохранить";
             this.Save_ToolStripMenuItem.Click += new System.EventHandler(this.Save_ToolStripMenuItem_Click);
             // 
             // Exit_ToolStripMenuItem
             // 
             this.Exit_ToolStripMenuItem.Name = "Exit_ToolStripMenuItem";
-            this.Exit_ToolStripMenuItem.Size = new System.Drawing.Size(324, 38);
+            this.Exit_ToolStripMenuItem.Size = new System.Drawing.Size(230, 38);
             this.Exit_ToolStripMenuItem.Text = "Выход";
             this.Exit_ToolStripMenuItem.Click += new System.EventHandler(this.Exit_ToolStripMenuItem_Click);
             // 
@@ -135,7 +135,6 @@
             this.listBox.Name = "listBox";
             this.listBox.Size = new System.Drawing.Size(399, 279);
             this.listBox.TabIndex = 6;
-            this.listBox.SelectedIndexChanged += new System.EventHandler(this.ListBox_SelectedIndexChanged);
             // 
             // Form1
             // 

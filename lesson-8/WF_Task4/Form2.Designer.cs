@@ -112,7 +112,7 @@
             this.Controls.Add(this.label1);
             this.Name = "Form2";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Form2";
+            this.Text = "о тренировке";
             this.ResumeLayout(false);
             this.PerformLayout();
 
