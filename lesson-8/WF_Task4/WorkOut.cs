@@ -13,6 +13,7 @@ namespace WF_Task4
         List<DataRun> listWorkOut;
         public string FileName
         {
+            get { return fileName; }
             set { fileName = value; }
         }
         public WorkOut(string fileName)
@@ -43,14 +44,14 @@ namespace WF_Task4
         {
             get { return listWorkOut.Count; }
         }
-        public void Save()
-        {
+        public void Save(string fileName)
+        { 
             XmlSerializer xFormat = new XmlSerializer(typeof(List<DataRun>));
             Stream fileStream = new FileStream(fileName, FileMode.Create, FileAccess.Write);
             xFormat.Serialize(fileStream, listWorkOut);
             fileStream.Close();
         }
-        public void Load()
+        public void Load(string fileName)
         {
             XmlSerializer xFormat = new XmlSerializer(typeof(List<DataRun>));
             Stream fileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read);
@@ -63,6 +64,11 @@ namespace WF_Task4
             {
                 list.Items.Add(val);
             }
+        }
+        public void FillListViewItem(ListBox list)
+        {
+            var val = listWorkOut[listWorkOut.Count - 1];
+            list.Items.Add(val);
         }
     }
 }
