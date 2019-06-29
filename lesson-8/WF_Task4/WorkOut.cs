@@ -25,7 +25,7 @@ namespace WF_Task4
         {
             listWorkOut = new List<DataRun>();
         }
-        public void Add(string d, double r, int t)
+        public void Add(string d, double r, double t)
         {
             listWorkOut.Add(new DataRun(d, r, t));
         }

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace WF_Task4
 {
@@ -19,15 +20,15 @@ namespace WF_Task4
 
         public string tBoxDataStr
         {
-            get { return tBoxData.Text; }
+            get { Regex reg = new Regex(@"\d\d\.\d\d\.\d{4}"); return reg.IsMatch(tBoxData.Text) ? tBoxData.Text : ""; }
         }
         public double tBoxDistDouble
         {
-            get { return (tBoxDist.Text != "") ? double.Parse(tBoxDist.Text) : 0; }
+            get { Regex reg = new Regex(@"\d"); return reg.IsMatch(tBoxDist.Text.Replace('.',',')) ? double.Parse(tBoxDist.Text.Replace('.',',')) : 0; }
         }
-        public int tBoxTimeInt
+        public double tBoxTimeInt
         {
-            get { return (tBoxTime.Text != "") ? int.Parse(tBoxTime.Text) : 0; }
+            get { Regex reg = new Regex(@"\d"); return reg.IsMatch(tBoxTime.Text.Replace('.', ',')) ? double.Parse(tBoxTime.Text.Replace('.', ',')) : 0; }
         }
 
         private void btn_OK_Click(object sender, EventArgs e)

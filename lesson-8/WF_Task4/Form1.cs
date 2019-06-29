@@ -85,10 +85,13 @@ namespace WF_Task4
             {
                 Form2 f = new Form2();
                 f.ShowDialog();
-                if (f.tBoxDataStr != "" || f.tBoxDistDouble != 0 || f.tBoxTimeInt != 0)
+                if (f.tBoxDataStr != "" && f.tBoxDistDouble != 0 && f.tBoxTimeInt != 0)
                 {
                     db.Add(f.tBoxDataStr, f.tBoxDistDouble, f.tBoxTimeInt);
                     db.FillListViewItem(listBox);
+                } else
+                {
+                    MessageBox.Show("Данные не введены или формат не соответствует шаблону\n xx.xx.xxxx - дата ");
                 }
             }
             else MessageBox.Show("База данных не создана или не открыта");

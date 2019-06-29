@@ -10,7 +10,7 @@ namespace WF_Task4
     {
         string dayRun;
         double distance;
-        int timeRun;
+        double timeRun;
 
         public string DayRun
         {
@@ -22,7 +22,7 @@ namespace WF_Task4
             get { return distance; }
             set { distance = value; }
         }
-        public int TimeRun
+        public double TimeRun
         {
             get { return timeRun; }
             set { timeRun = value; }
@@ -32,7 +32,7 @@ namespace WF_Task4
         {
 
         }
-        public DataRun(string dayRun, double distance, int timeRun)
+        public DataRun(string dayRun, double distance, double timeRun)
         {
             this.dayRun = dayRun;
             this.distance = distance;
