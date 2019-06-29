@@ -23,11 +23,11 @@ namespace WF_Task4
         }
         public double tBoxDistDouble
         {
-            get { return double.Parse(tBoxDist.Text); }
+            get { return (tBoxDist.Text != "") ? double.Parse(tBoxDist.Text) : 0; }
         }
         public int tBoxTimeInt
         {
-            get { return int.Parse(tBoxTime.Text); }
+            get { return (tBoxTime.Text != "") ? int.Parse(tBoxTime.Text) : 0; }
         }
 
         private void btn_OK_Click(object sender, EventArgs e)

@@ -85,8 +85,11 @@ namespace WF_Task4
             {
                 Form2 f = new Form2();
                 f.ShowDialog();
-                db.Add(f.tBoxDataStr, f.tBoxDistDouble, f.tBoxTimeInt);
-                db.FillListViewItem(listBox);
+                if (f.tBoxDataStr != "" || f.tBoxDistDouble != 0 || f.tBoxTimeInt != 0)
+                {
+                    db.Add(f.tBoxDataStr, f.tBoxDistDouble, f.tBoxTimeInt);
+                    db.FillListViewItem(listBox);
+                }
             }
             else MessageBox.Show("База данных не создана или не открыта");
         }
